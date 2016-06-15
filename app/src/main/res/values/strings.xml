@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ChartViewDemo</string>
+    <string name="histrory">历史记录</string>
+    <string name="bushu">总步数</string>
+</resources>
