@@ -2,13 +2,61 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
-    <com.qcy_bracelet.qcy.chartviewdemo.views.ChartView
+              android:layout_height="match_parent"
+              xmlns:test="http://schemas.android.com/apk/res-auto"
+              android:clipToPadding="true"
+              android:fitsSystemWindows="true">
+   <!-- <com.qcy_bracelet.qcy.chartviewdemo.views.ChartView
         android:id="@+id/chartview"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="#fff"/>
+        android:background="#fff"/>-->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="30dp"
+        android:background="#fff"
+        android:orientation="horizontal">
+
+        <com.qcy_bracelet.qcy.chartviewdemo.chart.CharterYLabels
+            android:id="@+id/charter_line_YLabel2"
+            android:layout_width="30dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="30dp"
+            test:c_labelColor="#1b1d1c"/>
+
+        <HorizontalScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical"
+                >
+
+                <com.qcy_bracelet.qcy.chartviewdemo.chart.CharterLine
+                    android:id="@+id/charter_line"
+                    android:layout_width="1200dip"
+                    android:layout_height="140dp"
+                    android:padding="5dip"
+                    test:c_chartFillColor="@color/blue"
+                    />
+
+                <com.qcy_bracelet.qcy.chartviewdemo.chart.CharterXLabels
+                    android:id="@+id/charter_line_XLabel"
+                    android:layout_width="1200dip"
+                    android:layout_height="20dp"
+                    test:c_labelColor="#ef08f6"/>
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
 
 </LinearLayout>

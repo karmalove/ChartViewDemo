@@ -1,7 +1,6 @@
 package com.qcy_bracelet.qcy.chartviewdemo.fragment;
 
 import android.app.Fragment;
-import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -9,10 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.qcy_bracelet.qcy.chartviewdemo.R;
+import com.qcy_bracelet.qcy.chartviewdemo.chart.CharterLine;
+import com.qcy_bracelet.qcy.chartviewdemo.chart.CharterXLabels;
+import com.qcy_bracelet.qcy.chartviewdemo.chart.CharterYLabels;
 import com.qcy_bracelet.qcy.chartviewdemo.views.ChartView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Kevin on 2016/6/13.
@@ -21,23 +20,29 @@ import java.util.List;
  */
 public class MonthFragment extends Fragment {
     private ChartView chartView;
+    private CharterXLabels mCharterLineXLabel;
+    private CharterYLabels mCharterLineYLabel2;
+    private CharterLine mCharterLine;
+    private String[] valuesY = new String[]{"优秀", "一般", "良好", "非常", "差劣", "超级"};
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getActivity().getWindow().setFormat(PixelFormat.TRANSLUCENT);
-    }
+    private String[] valueX = new String[]{"1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"};
+
+    private float[] value = new float[]{0, 5, 3, 1, 4, 3, 2, 3, 4, 3, 1, 4};
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.month_fragemnt, container, false);
-        chartView = (ChartView) view.findViewById(R.id.chartview);
-        setViewTwo();
+        //chartView = (ChartView) view.findViewById(R.id.chartview);
+        //setViewTwo();
+        mCharterLineXLabel=(CharterXLabels) view.findViewById(R.id.charter_line_XLabel);
+        mCharterLineYLabel2=(CharterYLabels)view.findViewById(R.id.charter_line_YLabel2);
+        mCharterLine=(CharterLine)view.findViewById(R.id.charter_line);
+        setViewOne();
         return view;
     }
 
-    private void setViewTwo() {
+   /* private void setViewTwo() {
         chartView.setYMaxValue(100);
         chartView.setYMinValue(0);
         List<ChartView.ChartData> chartDatas = new ArrayList<>();
@@ -53,7 +58,7 @@ public class MonthFragment extends Fragment {
         chartDatas.add(new ChartView.ChartData(0.2f, "", "10月"));
         chartDatas.add(new ChartView.ChartData(0.2f, "", "11月"));
         chartDatas.add(new ChartView.ChartData(0.4f, "", "12月"));
-        /*chartDatas.add(new ChartView.ChartData(0.6f, "", "01/14"));
+        *//*chartDatas.add(new ChartView.ChartData(0.6f, "", "01/14"));
         chartDatas.add(new ChartView.ChartData(0.2f, "", "01/15"));
         chartDatas.add(new ChartView.ChartData(0.0f, "", "01/16"));
         chartDatas.add(new ChartView.ChartData(0.2f, "", "01/17"));
@@ -70,9 +75,17 @@ public class MonthFragment extends Fragment {
         chartDatas.add(new ChartView.ChartData(0.4f, "", "01/28"));
         chartDatas.add(new ChartView.ChartData(0.6f, "", "01/29"));
         chartDatas.add(new ChartView.ChartData(0.2f, "", "01/30"));
-        chartDatas.add(new ChartView.ChartData(0.2f, "", "01/31"));*/
+        chartDatas.add(new ChartView.ChartData(0.2f, "", "01/31"));*//*
 
         chartView.setData(chartDatas);
         chartView.startChart();
-    }
+    }*/
+   private void setViewOne() {
+       mCharterLineXLabel.setStickyEdges(true);
+       mCharterLineXLabel.setValues(valueX);
+       mCharterLineYLabel2.setValues(valuesY);
+       mCharterLineYLabel2.setStickyEdges(true);
+       mCharterLine.setValues(value);
+
+   }
 }

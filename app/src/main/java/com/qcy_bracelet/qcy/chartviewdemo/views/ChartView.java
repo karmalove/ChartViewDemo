@@ -15,6 +15,7 @@ import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.hardware.SensorManager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -58,6 +59,8 @@ public class ChartView extends SurfaceView {
     private Context context;
     private SurfaceHolder holder;
     private GestureDetector detector;
+
+    private Drawable drawable=getResources().getDrawable(R.drawable.gradient);
 
     /**
      * 设置数据
@@ -135,7 +138,7 @@ public class ChartView extends SurfaceView {
     /**
      * 阴影的颜色
      */
-    private int shapeColor = Color.RED;
+    private int shapeColor =getResources().getColor(R.color.back) ;
     /**
      * 数据点的位图
      */
@@ -284,6 +287,8 @@ public class ChartView extends SurfaceView {
         this(context, null);
 
     }
+
+
 
     /**
      * 全部设置完成后，开始chart的绘制
@@ -868,11 +873,9 @@ public class ChartView extends SurfaceView {
 
         Paint paintShape = new Paint();
         paintShape.setStyle(Style.FILL);
-        //paintShape.setColor(shapeColor);
+        paintShape.setStrokeWidth(10);
+        paintShape.setColor(shapeColor);
         //paintShape.setAlpha(shapeAlpha);
-
-        LinearGradient gradient = new LinearGradient(300, 0, 200, 200, Color.WHITE, getResources().getColor(R.color.back), Shader.TileMode.MIRROR);
-        paintShape.setShader(gradient);
 
         if (axesData.size() > 0) {
             for (int i = 0; i < axesData.size(); i++) {
@@ -881,11 +884,17 @@ public class ChartView extends SurfaceView {
                     canvas.drawLine(axesData.get(i).X, axesData.get(i).Y, axesData.get(i + 1).X, axesData.get(i + 1).Y, paintChart);
                     if (isShapeShow) {
                         // 画阴影
+                       /* drawable.setBounds(axesData.get(i).X, (int) (axesData.get(i+1).Y + chartLineSize / 2),axesData.get(i + 1).X, height - bottomPadding - xTextHeight);
+                        drawable.draw(canvas);*/
+                        LinearGradient gradient = new LinearGradient(axesData.get(i).X,height - bottomPadding - xTextHeight, axesData.get(i).X, axesData.get(i).Y + chartLineSize / 2, Color.WHITE, getResources().getColor(R.color.back), Shader.TileMode.MIRROR);
+                        paintShape.setShader(gradient);
                         Path path = new Path();
-                        path.moveTo(axesData.get(i).X, height - bottomPadding - xTextHeight);
+                       /* path.moveTo(axesData.get(i).X, height - bottomPadding - xTextHeight);
                         path.lineTo(axesData.get(i).X, axesData.get(i).Y + chartLineSize / 2);
                         path.lineTo(axesData.get(i + 1).X, axesData.get(i + 1).Y + chartLineSize / 2);
-                        path.lineTo(axesData.get(i + 1).X, height - bottomPadding - xTextHeight);
+                        path.lineTo(axesData.get(i + 1).X, height - bottomPadding - xTextHeight);*/
+                        path.moveTo(axesData.get(i).X,axesData.get(i).Y);
+                        path.lineTo(axesData.get(i+1).X,axesData.get(i+1).Y);
                         canvas.drawPath(path, paintShape);
                     }
                 }
