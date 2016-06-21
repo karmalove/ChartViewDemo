@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+              xmlns:test="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              xmlns:test="http://schemas.android.com/apk/res-auto"
               android:clipToPadding="true"
-              android:fitsSystemWindows="true">
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
     <!-- <com.qcy_bracelet.qcy.chartviewdemo.views.ChartView
         android:id="@+id/chartview"
         android:layout_width="match_parent"
@@ -28,6 +28,10 @@
             android:layout_height="140dp"
             android:layout_marginTop="30dp"
             test:c_labelColor="#1b1d1c"/>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="171dp"
+            android:background="@color/textColor"/>
 
         <HorizontalScrollView
             android:layout_width="fill_parent"
@@ -49,6 +53,11 @@
                     android:padding="5dip"
                     test:c_chartFillColor="@color/blue"
                     />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/textColor"/>
 
                 <com.qcy_bracelet.qcy.chartviewdemo.chart.CharterXLabels
                     android:id="@+id/charter_line_XLabel"
